@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Room List</h1>
+  {% if rooms %}
+    <ul>
+      {% for room in rooms %}
+        <li>{{ room.room_number }} - Rent Price per Hour: {{ room.rent_price_per_hour }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No rooms available.</p>
+  {% endif %}
+{% endblock %}

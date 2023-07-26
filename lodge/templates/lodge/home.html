@@ -1,0 +1,55 @@
+
+
+
+{% block content %}
+<!-- base.html -->
+<!DOCTYPE html>
+<html>
+<head><br><br>
+    <title>Tourist Lodge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #1e90ff;
+        }
+        p {
+            font-size: 18px;
+        }
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #1e90ff;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0078d4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Our Lodge</h1>
+        <p>We offer comfortable rooms for your stay. Book a room today!</p>
+        <a href="{% url 'add_room' %}" class="btn">Add New Room</a>
+        <a href="{% url 'room_list' %}" class="btn">View Available Rooms</a>
+        <a href="{% url 'book_room' %}" class="btn">Book a Room</a>
+    </div>
+</body>
+</html>
+
+{% endblock %}

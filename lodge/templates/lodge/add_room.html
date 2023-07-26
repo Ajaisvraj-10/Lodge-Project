@@ -1,0 +1,14 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Add New Room</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="room_number">Room Number:</label>
+    <input type="text" name="room_number" required><br><br>
+    <label for="rent_price_per_hour">Rent Price per Hour:</label>
+    <input type="text" name="rent_price_per_hour" required><br><br>
+    <input type="submit" value="Add Room">
+  </form>
+{% endblock %}
