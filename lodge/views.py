@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Room, Booking
 from datetime import datetime
 from django.contrib import messages
-
+from .serealizers import RoomSerializers
+from rest_framework .generics import ListAPIView
 
 
 
@@ -45,10 +46,14 @@ def book_room(request):
 
         except ValueError:
             messages.error(request, 'Invalid date format. Please use YYYY-MM-DDTHH:MM.')
-
     return render(request, 'lodge/book_room.html')
 
 
-def room_list(request):
-    rooms = Room.objects.all()
-    return render(request, 'lodge/room_list.html', {'rooms': rooms})
+# def room_list(request):
+#     rooms = Room.objects.all()
+#     return render(request, 'lodge/room_list.html', {'rooms': rooms})
+
+class RoomListAPIView(ListAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializers
+    lookup_field = 'room_number'
