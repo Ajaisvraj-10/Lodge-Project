@@ -3,12 +3,29 @@ from .models import Room, Booking
 from datetime import datetime
 from django.contrib import messages
 from .serealizers import RoomSerializers
-from rest_framework .generics import ListAPIView
+from rest_framework .generics import ListAPIView,CreateAPIView
+from rest_framework import status
+from rest_framework .response import Response
 
 
 
 def home_page(request):
     return render(request,'lodge/home.html')
+
+
+
+class RoomCreateAPIView(CreateAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializers
+    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
 
 
 def add_room(request):
